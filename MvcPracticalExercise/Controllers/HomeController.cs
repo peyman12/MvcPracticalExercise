@@ -94,7 +94,7 @@ namespace MvcPracticalExercise.Controllers
                 {
                     Quote *= 1.5;
                 }
-                string connectionString = @"Data Source = .; Integrated Security = True; Connect Timeout = 15; Encrypt = False; TrustServerCertificate = True;                      ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
+                string connectionString = @"data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\CarInsurance.mdf;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;";
 
                 string queryString = @"INSERT INTO CarInsurance (FirstName, LastName, EmailAddress, DateOfBirth, CarYear, CarMake, CarModel, DUI, Tickets) VALUES
                                                (@FirstName, @LastName, @EmailAddress, @DateOfBirth, @CarYear, @CarMake, @CarModel, @DUI, @Tickets, @Quote)";
@@ -103,6 +103,7 @@ namespace MvcPracticalExercise.Controllers
                     SqlCommand command = new SqlCommand(queryString, connection);
                     command.Parameters.Add("@FirstName", SqlDbType.VarChar);
                     command.Parameters.Add("@LastName", SqlDbType.VarChar);
+                    command.Parameters.Add("@EmailAddress", SqlDbType.VarChar);
                     command.Parameters.Add("@DateOfBirth", SqlDbType.DateTime);
                     command.Parameters.Add("@CarYear", SqlDbType.Int);
                     command.Parameters.Add("@CarMake", SqlDbType.VarChar);
